@@ -1,0 +1,42 @@
+.customerRow {
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  transition: background-color 0.3s;
+}
+
+.customerRow:hover {
+  background-color: #f9f9f9;
+}
+
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+td:nth-child(1) {
+  font-weight: bold;
+}
+
+.stateDropdown {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.stateDropdown:hover {
+  border-color: #aaa;
+}
+
+.notStarted {
+  color: #ff5722; 
+}
+
+.started {
+  color: #2196f3; 
+
+.done {
+  color: #4caf50; 
+}
