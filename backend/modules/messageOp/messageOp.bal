@@ -17,7 +17,7 @@ public function message(int phoneNumber, string jobDescription, string jobStatus
     twilio:CreateMessageRequest messageRequest = {
             To: "+94" + phoneNumber.toString(),
             From: "+18647744002",
-            Body: "Job description : " + jobDescription + "\nJob status : " + jobStatus + "\nDon't Worry we will take care of your item untill you get back!!"
+            Body: "name : " + jobDescription + "\nJob status : " + jobStatus + "\nDon't Worry we will take care of your item untill you get back!!"
         };
 
     twilio:Message response = check twilio->createMessage(messageRequest);

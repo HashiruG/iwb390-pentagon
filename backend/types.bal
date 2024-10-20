@@ -4,13 +4,16 @@ public type Job record {|
 |};
 
 public type JobInput record {|
-    string description;
+    string name;
     int phoneNumber;
-    string status;
+    string device;
+    string date;
 |};
 
 public type JobUpdate record {|
-    string description;
+    string name;
     int phoneNumber;
+    string device;
+    string date;
     string status;
 |};

@@ -5,6 +5,13 @@ import backend.messageOp;
 import ballerina/io;
 
 
+@http:ServiceConfig {
+    cors: {
+        allowOrigins: ["http://localhost:5173"],
+        allowMethods: ["*"]
+    }
+}
+
 service on new http:Listener(9091) {
     resource function get jobs() returns Job[]|error {
         mongodb:Collection jobs = check jobsDb->getCollection("jobs");
@@ -23,7 +30,7 @@ service on new http:Listener(9091) {
         Job job = {id, ...input};
         mongodb:Collection jobs = check jobsDb->getCollection("jobs");
         check jobs->insertOne(job);
-        error? message = messageOp:message(input.phoneNumber, input.description, input.status);
+        error? message = messageOp:message(input.phoneNumber, input.name, input.device);
         io:print(message);
         return job;
     }
@@ -34,7 +41,7 @@ service on new http:Listener(9091) {
         if updateResult.modifiedCount != 1 {
             return error(string `Failed to update the job with ${phoneNumber}`);
         }
-        error? message = messageOp:message(update.phoneNumber, update.description, update.status);
+        error? message = messageOp:message(update.phoneNumber, update.name, update.status);
         io:print(message);
         return update;
     }
@@ -45,7 +52,7 @@ service on new http:Listener(9091) {
         if deleteResult.deletedCount != 1 {
             return error(string `Failed to delete the job ${phoneNumber}`);
         }
-        error? message = messageOp:message(update.phoneNumber, update.description, update.status);
+        error? message = messageOp:message(update.phoneNumber, update.name, update.status);
         io:print(message);
         return "Successfully deleted the job";
     }
